@@ -1,0 +1,6 @@
+'use client'
+import { useState } from 'react'
+import { supabase } from '@/lib/supabase'
+export function RecoverForm(){const [message,setMessage]=useState('');const [busy,setBusy]=useState(false)
+ async function submit(e:React.FormEvent<HTMLFormElement>){e.preventDefault();if(!supabase){setMessage('La conexión no está configurada.');return}const f=new FormData(e.currentTarget);setBusy(true);const {error}=await supabase.auth.resetPasswordForEmail(String(f.get('email')).trim(),{redirectTo:window.location.origin+'/update-password'});setBusy(false);setMessage(error?'No fue posible enviar la solicitud. Inténtalo más tarde.':'Si existe una cuenta para ese correo, recibirás instrucciones para recuperar tu contraseña.')}
+ return <form onSubmit={submit} className="mt-6 space-y-4"><label className="block text-left text-sm font-bold">Correo electrónico<input required type="email" name="email" autoComplete="email" className="mt-2 w-full rounded-xl border border-[#ead8cf] px-4 py-3"/></label><button disabled={busy} className="w-full rounded-full bg-[#f47b25] px-6 py-3 font-bold text-white disabled:opacity-50">{busy?'Enviando…':'Enviar instrucciones'}</button>{message&&<p role="status" className="text-sm text-[#79543e]">{message}</p>}</form>}

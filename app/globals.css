@@ -1,83 +1,61 @@
-@import "tailwindcss";
-@import "tw-animate-css";
-
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
+@import 'tailwindcss';
+@import 'tw-animate-css';
 @custom-variant dark (&:is(.dark *));
 
 :root {
-  /* Updated color palette for Sabor Global - warm amber and pink accents */
-  --background: oklch(1 0 0); /* White background */
-  --foreground: oklch(0.3 0 0); /* Dark gray text */
-  --card: oklch(0.98 0.02 85); /* Light warm beige for recipe cards */
-  --card-foreground: oklch(0.3 0 0);
-  --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.3 0 0);
-  --primary: oklch(0.65 0.15 45); /* Warm amber for primary actions */
-  --primary-foreground: oklch(1 0 0);
-  --secondary: oklch(0.7 0.2 340); /* Bright pink accent */
-  --secondary-foreground: oklch(1 0 0);
-  --muted: oklch(0.98 0.02 85); /* Light warm beige */
-  --muted-foreground: oklch(0.5 0 0);
-  --accent: oklch(0.7 0.2 340); /* Pink accent */
-  --accent-foreground: oklch(1 0 0);
-  --destructive: oklch(0.55 0.25 15);
-  --destructive-foreground: oklch(1 0 0);
-  --border: oklch(0.9 0 0);
-  --input: oklch(0.98 0.02 85);
-  --ring: oklch(0.65 0.15 45);
-  --chart-1: oklch(0.65 0.15 45);
-  --chart-2: oklch(0.7 0.2 340);
-  --chart-3: oklch(0.6 0.12 35);
-  --chart-4: oklch(0.55 0.25 15);
-  --chart-5: oklch(0.3 0 0);
-  --radius: 0.5rem;
-  --sidebar: oklch(0.98 0.02 85);
-  --sidebar-foreground: oklch(0.3 0 0);
-  --sidebar-primary: oklch(0.65 0.15 45);
-  --sidebar-primary-foreground: oklch(1 0 0);
-  --sidebar-accent: oklch(0.7 0.2 340);
-  --sidebar-accent-foreground: oklch(1 0 0);
-  --sidebar-border: oklch(0.9 0 0);
-  --sidebar-ring: oklch(0.65 0.15 45);
+  --background: #fff8f6;
+  --foreground: #241913;
+  --card: #ffffff;
+  --card-foreground: #241913;
+  --popover: #ffffff;
+  --popover-foreground: #241913;
+  --primary: #f47b25;
+  --primary-foreground: #ffffff;
+  --secondary: #fff0e6;
+  --secondary-foreground: #9a4600;
+  --muted: #f8f1ed;
+  --muted-foreground: #6b5b52;
+  --accent: #fff0e6;
+  --accent-foreground: #9a4600;
+  --destructive: #ba1a1a;
+  --destructive-foreground: #ffffff;
+  --border: #ead8cf;
+  --input: #fdf6f1;
+  --ring: #f47b25;
+  --radius: .85rem;
+  --sidebar: #fff8f6;
+  --sidebar-foreground: #241913;
+  --sidebar-primary: #f47b25;
+  --sidebar-primary-foreground: #ffffff;
+  --sidebar-accent: #fff0e6;
+  --sidebar-accent-foreground: #9a4600;
+  --sidebar-border: #ead8cf;
+  --sidebar-ring: #f47b25;
 }
-
 .dark {
-  --background: oklch(0.145 0 0);
-  --foreground: oklch(0.985 0 0);
-  --card: oklch(0.2 0 0);
-  --card-foreground: oklch(0.985 0 0);
-  --popover: oklch(0.145 0 0);
-  --popover-foreground: oklch(0.985 0 0);
-  --primary: oklch(0.7 0.18 45);
-  --primary-foreground: oklch(0.145 0 0);
-  --secondary: oklch(0.75 0.22 340);
-  --secondary-foreground: oklch(0.145 0 0);
-  --muted: oklch(0.2 0 0);
-  --muted-foreground: oklch(0.708 0 0);
-  --accent: oklch(0.75 0.22 340);
-  --accent-foreground: oklch(0.145 0 0);
-  --destructive: oklch(0.6 0.28 15);
-  --destructive-foreground: oklch(0.985 0 0);
-  --border: oklch(0.269 0 0);
-  --input: oklch(0.269 0 0);
-  --ring: oklch(0.7 0.18 45);
-  --chart-1: oklch(0.7 0.18 45);
-  --chart-2: oklch(0.75 0.22 340);
-  --chart-3: oklch(0.65 0.15 35);
-  --chart-4: oklch(0.6 0.28 15);
-  --chart-5: oklch(0.8 0 0);
-  --sidebar: oklch(0.205 0 0);
-  --sidebar-foreground: oklch(0.985 0 0);
-  --sidebar-primary: oklch(0.7 0.18 45);
-  --sidebar-primary-foreground: oklch(0.145 0 0);
-  --sidebar-accent: oklch(0.75 0.22 340);
-  --sidebar-accent-foreground: oklch(0.145 0 0);
-  --sidebar-border: oklch(0.269 0 0);
-  --sidebar-ring: oklch(0.7 0.18 45);
+  --background: #221710;
+  --foreground: #fff8f6;
+  --card: #32251d;
+  --card-foreground: #fff8f6;
+  --popover: #32251d;
+  --popover-foreground: #fff8f6;
+  --primary: #f47b25;
+  --primary-foreground: #221710;
+  --secondary: #4a2e1e;
+  --secondary-foreground: #fff8f6;
+  --muted: #382b23;
+  --muted-foreground: #e0c8ba;
+  --accent: #4a2e1e;
+  --accent-foreground: #fff8f6;
+  --destructive: #e45d57;
+  --destructive-foreground: #ffffff;
+  --border: #604c41;
+  --input: #32251d;
+  --ring: #f47b25;
 }
-
 @theme inline {
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --font-sans: 'Plus Jakarta Sans', system-ui, sans-serif;
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-card: var(--card);
@@ -97,15 +75,10 @@
   --color-border: var(--border);
   --color-input: var(--input);
   --color-ring: var(--ring);
-  --color-chart-1: var(--chart-1);
-  --color-chart-2: var(--chart-2);
-  --color-chart-3: var(--chart-3);
-  --color-chart-4: var(--chart-4);
-  --color-chart-5: var(--chart-5);
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
-  --radius-xl: calc(var(--radius) + 4px);
+  --radius-xl: calc(var(--radius) + 8px);
   --color-sidebar: var(--sidebar);
   --color-sidebar-foreground: var(--sidebar-foreground);
   --color-sidebar-primary: var(--sidebar-primary);
@@ -115,12 +88,10 @@
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-ring: var(--sidebar-ring);
 }
-
 @layer base {
-  * {
-    @apply border-border outline-ring/50;
-  }
-  body {
-    @apply bg-background text-foreground;
-  }
+  * { @apply border-border outline-ring/50; }
+  html { scroll-behavior: smooth; }
+  body { @apply bg-background text-foreground; font-family: 'Plus Jakarta Sans', system-ui, sans-serif; }
+  button, a, input, select, textarea { @apply focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#f47b25]; }
 }
+@media print { header, footer, .no-print { display: none !important; } body { background: white !important; } }

@@ -1,0 +1,9 @@
+'use client'
+import { useState } from 'react'
+import Link from 'next/link'
+import { supabase } from '@/lib/supabase'
+import { Header } from '@/components/header'
+import { Footer } from '@/components/footer'
+export default function UpdatePassword(){const [message,setMessage]=useState('');const [busy,setBusy]=useState(false)
+ async function submit(e:React.FormEvent<HTMLFormElement>){e.preventDefault();if(!supabase)return;const f=new FormData(e.currentTarget);if(f.get('password')!==f.get('confirm')){setMessage('Las contraseñas no coinciden.');return}setBusy(true);const {error}=await supabase.auth.updateUser({password:String(f.get('password'))});setBusy(false);setMessage(error?'El enlace es inválido o ha caducado. Solicita uno nuevo.':'Contraseña actualizada. Ya puedes iniciar sesión.')}
+ return <div><Header/><main className="mx-auto max-w-lg px-5 py-20"><form onSubmit={submit} className="space-y-4 rounded-[26px] border border-[#ead8cf] bg-white p-8"><h1 className="text-3xl font-extrabold">Nueva contraseña</h1><label className="block text-sm font-bold">Contraseña<input required minLength={8} type="password" name="password" autoComplete="new-password" className="mt-2 w-full rounded-xl border border-[#ead8cf] px-4 py-3"/></label><label className="block text-sm font-bold">Confirmar contraseña<input required minLength={8} type="password" name="confirm" autoComplete="new-password" className="mt-2 w-full rounded-xl border border-[#ead8cf] px-4 py-3"/></label><button disabled={busy} className="w-full rounded-full bg-[#f47b25] p-3 font-bold text-white disabled:opacity-50">Guardar contraseña</button>{message&&<p role="status" className="text-sm">{message}</p>}<Link href="/recover" className="block text-sm font-bold text-[#bd571a]">Solicitar otro enlace</Link></form></main><Footer/></div>}

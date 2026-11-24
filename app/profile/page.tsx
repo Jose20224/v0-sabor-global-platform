@@ -1,35 +1,6 @@
-import { Header } from "@/components/header"
-import { ProfileForm } from "@/components/profile/profile-form"
-import { DietaryPreferences } from "@/components/profile/dietary-preferences"
-import { AllergiesIntolerances } from "@/components/profile/allergies-intolerances"
-import { NutritionalSettings } from "@/components/profile/nutritional-settings"
-
-export default function ProfilePage() {
-  return (
-    <div className="min-h-screen bg-background">
-      <Header />
-      <main className="container mx-auto px-4 py-8">
-        <div className="max-w-4xl mx-auto">
-          <div className="mb-8">
-            <h1 className="text-3xl font-bold text-foreground mb-2">Mi Perfil</h1>
-            <p className="text-muted-foreground">Personaliza tu experiencia culinaria según tus gustos y necesidades</p>
-          </div>
-
-          <div className="grid gap-8">
-            {/* Información Personal */}
-            <ProfileForm />
-
-            {/* Preferencias Alimentarias */}
-            <DietaryPreferences />
-
-            {/* Alergias e Intolerancias */}
-            <AllergiesIntolerances />
-
-            {/* Configuración Nutricional */}
-            <NutritionalSettings />
-          </div>
-        </div>
-      </main>
-    </div>
-  )
-}
+import type { Metadata } from 'next'
+import { Header } from '@/components/header'
+import { Footer } from '@/components/footer'
+import { ProfileDashboard } from '@/components/profile/profile-dashboard'
+export const metadata: Metadata = {title:'Mi perfil'}
+export default function ProfilePage() {return <div><Header/><main className="mx-auto max-w-7xl px-5 py-12 sm:px-7 lg:px-10"><span className="text-xs font-extrabold uppercase tracking-[.15em] text-[#bd571a]">Personaliza tu experiencia</span><h1 className="mt-3 text-4xl font-extrabold tracking-tight">Mi perfil</h1><p className="mb-10 mt-3 max-w-2xl text-sm leading-7 text-[#6b5b52]">Configura tus gustos. Si inicias sesión se guardarán en tu cuenta; de lo contrario, en este navegador.</p><ProfileDashboard/></main><Footer/></div>}
