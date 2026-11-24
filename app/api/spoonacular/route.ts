@@ -1,0 +1,3 @@
+import { NextResponse } from 'next/server'
+import { getRecipe, SpoonError } from '@/lib/spoonacular'
+export async function GET(request:Request){const id=new URL(request.url).searchParams.get('id')||'';if(!/^\d{1,12}$/.test(id))return NextResponse.json({error:'invalid id'},{status:400});try{const r=await getRecipe(id,false);if(!r)return NextResponse.json({error:'not found'},{status:404});return NextResponse.json({id:r.id,title:r.title,image:r.image,readyInMinutes:r.readyInMinutes,servings:r.servings,dishTypes:r.dishTypes})}catch(e){return NextResponse.json({error:'unavailable'},{status:e instanceof SpoonError&&e.status===429?429:503})}}

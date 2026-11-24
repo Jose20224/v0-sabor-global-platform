@@ -1,0 +1,8 @@
+import 'server-only'
+export type Meal = { idMeal:string; strMeal:string; strMealThumb:string; strCategory:string|null; strArea:string|null; strInstructions:string|null; [key:string]:string|null }
+export class CatalogError extends Error {}
+function apiKey(){const key=process.env.MEALDB_API_KEY;if(key&&/^[A-Za-z0-9_-]+$/.test(key))return key;if(process.env.NODE_ENV!=='production')return '1';throw new CatalogError('El catálogo todavía no está configurado.')}
+async function request(path:string,query:string):Promise<Meal[]>{try{const url=new URL(`https://www.themealdb.com/api/json/v1/${apiKey()}/${path}`);url.search=query;const res=await fetch(url,{next:{revalidate:1800},signal:AbortSignal.timeout(8000)});if(!res.ok)throw new Error('upstream');const data=await res.json();if(!data||!(data.meals===null||Array.isArray(data.meals)))throw new Error('invalid');return (data.meals||[]).filter((m:Meal)=>/^\d+$/.test(m.idMeal)&&typeof m.strMeal==='string')}catch(e){if(e instanceof CatalogError)throw e;throw new CatalogError('No fue posible cargar las recetas. Inténtalo de nuevo más tarde.')}}
+export function searchMeals(q:string){const params=new URLSearchParams({s:q.slice(0,100)});return request('search.php',params.toString())}
+export async function getMeal(id:string){if(!/^\d{1,12}$/.test(id))return null;return (await request('lookup.php',new URLSearchParams({i:id}).toString()))[0]||null}
+export function ingredients(m:Meal){return Array.from({length:20},(_,i)=>{const ingredient=m[`strIngredient${i+1}`]?.trim();const measure=m[`strMeasure${i+1}`]?.trim();return ingredient?[measure,ingredient].filter(Boolean).join(' '):null}).filter((x):x is string=>Boolean(x))}

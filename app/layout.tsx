@@ -1,5 +1,9 @@
 import type { Metadata } from 'next'
 import './globals.css'
+import { Header } from '@/components/header'
+import { Footer } from '@/components/footer'
+import { PageTransition } from '@/components/page-transition'
+import { FavoritesProvider } from '@/lib/favorites'
 
 export const metadata: Metadata = {
   title: { default: 'Sabor Global | Tu pasaporte culinario', template: '%s | Sabor Global' },
@@ -8,5 +12,5 @@ export const metadata: Metadata = {
 }
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
-  return <html lang="es"><body className="min-h-screen font-sans antialiased">{children}</body></html>
+  return <html lang="es"><body className="min-h-screen font-sans antialiased"><FavoritesProvider><Header/><PageTransition>{children}</PageTransition><Footer/></FavoritesProvider></body></html>
 }
